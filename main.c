@@ -6,7 +6,7 @@
 /*   By: melee <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 11:03:57 by melee             #+#    #+#             */
-/*   Updated: 2023/05/19 10:24:01 by melee            ###   ########.fr       */
+/*   Updated: 2023/05/19 11:41:49 by melee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,16 +86,10 @@ int	main(int argc, char **argv)
 	}
 	//sa(stackA);
 	ft_lstiter(stackA, ft_printf);
-	pa(&stackA, &stackB);
-	printf("printing stackA\n");
+	rrb(&stackB);
+rrb(&stackB);
+	printf("printing stack after ra\n");
 	ft_lstiter(stackA, ft_printf);
-	printf("printing stackB\n");
-	ft_lstiter(stackB, ft_printf);
-	pa(&stackA, &stackB);
-	printf("printing stackA\n");
-	ft_lstiter(stackA, ft_printf);	
-	printf("printing stackB\n");
-	ft_lstiter(stackB, ft_printf);
 
 
 	return (0);
