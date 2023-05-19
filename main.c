@@ -6,7 +6,7 @@
 /*   By: melee <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 11:03:57 by melee             #+#    #+#             */
-/*   Updated: 2023/05/18 15:53:23 by melee            ###   ########.fr       */
+/*   Updated: 2023/05/19 10:24:01 by melee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,20 @@ t_list	*populate(t_list *stackA, int argc, char **argv)
 	t_list	*node;
 
 	i = 1;
+	node = NULL;
 	while (i < argc)
-	{
+	{	
 		if (stackA)
-			node = stackA;
+			node = stackA;		
 		if (check_string_error(argv[i]) == -1)
-			return (NULL);
+			return (NULL);	
 		while (node)
 		{
-			if (ft_atoi(node->content) == ft_atoi(argv[i]))
+			if (ft_atoi_long(node->content) == ft_atoi_long(argv[i]))
 				return (NULL);
 			node = node->next;
 		}
+		
 		if (ft_atoi_long(argv[i]) > 2147483647 || ft_atoi_long(argv[i]) < -2147483648)
 			return (NULL);
 		ft_lstadd_back(&stackA, ft_lstnew(argv[i]));
@@ -71,7 +73,7 @@ int	main(int argc, char **argv)
 	t_list	*stackA;
    	t_list	*stackB;
 	
-	stackA = NULL;	
+	stackA = NULL;
 	stackB = NULL;
 	if (argc > 1)
 	{
@@ -82,8 +84,20 @@ int	main(int argc, char **argv)
 			return (0);
 		}
 	}
-	sa(stackA);
+	//sa(stackA);
 	ft_lstiter(stackA, ft_printf);
+	pa(&stackA, &stackB);
+	printf("printing stackA\n");
+	ft_lstiter(stackA, ft_printf);
+	printf("printing stackB\n");
+	ft_lstiter(stackB, ft_printf);
+	pa(&stackA, &stackB);
+	printf("printing stackA\n");
+	ft_lstiter(stackA, ft_printf);	
+	printf("printing stackB\n");
+	ft_lstiter(stackB, ft_printf);
+
+
 	return (0);
 }
 

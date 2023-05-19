@@ -1,4 +1,4 @@
-SRCS_NAME = main sa ft_atoi_long
+SRCS_NAME = main swap push ft_atoi_long
 
 SRCS = $(SRCS_NAME:=.c)
 
