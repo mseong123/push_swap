@@ -6,7 +6,7 @@
 /*   By: melee <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 09:19:28 by melee             #+#    #+#             */
-/*   Updated: 2023/05/23 10:36:34 by melee            ###   ########.fr       */
+/*   Updated: 2023/05/23 11:35:51 by melee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,34 +18,31 @@ char	*getMin(t_list *stackA, int place)
 	char 	*res;
 	char	*content;
 
-	res = NULL;
+	res = stackA->content;
 	while (stackA)
 	{
 		content = stackA->content;
-		if (res == NULL)
+		if (content[0] == '-' && res[0] == '-')
+		{
+			if (ft_strlen(content) > ft_strlen(res)) 
+				res = content;
+			else if (ft_strlen(content) == ft_strlen(res) 
+					&& content[place + 1] > res[place + 1])	
+				res = content;
+		}
+		else if (content[0] == '-' && res[0] != '-')
 			res = content;
-		else if (content[0] == '-')
-			if (res[0] == '-')
-			{
-			   if (ft_strlen(content) > ft_strlen(res))
-					res = content;
-	   			else if (content[place + 1] > res[place + 1])
-					res = content;
-			}
-			else
-			{
-				printf("ms\n");
+		else if (content[0] != '-' && res[0] != '-')
+		{
+			if (ft_strlen(content) < ft_strlen(res))
 				res = content;
-			}
-		else
-			if (res[0] != '-' && ft_strlen(content) < ft_strlen(res))
+			else if (ft_strlen(content) == ft_strlen(res) 
+				&& content[place] < res[place])
 				res = content;
-			else if (res[0] != '-' && content[place] < res[place])
-				res = content;
+		}
 		stackA = stackA->next;
 	}
 	return (res);
-
 }
 
 
@@ -75,13 +72,12 @@ void	radix_sort(t_list **stackA, t_list **stackB)
 
 	stackB= NULL;
 	place = get_max_place(*stackA);
-	//printf("place %d\n", place);
 
 	//while (place)
 	//{
 	//	while (*stackA)
 	//	{
-			min = getMin(*stackA, 6);
+			min = getMin(*stackA, 1);
 			printf("min %s\n",min);
 	//	}
 

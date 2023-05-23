@@ -6,7 +6,7 @@
 /*   By: melee <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 11:03:57 by melee             #+#    #+#             */
-/*   Updated: 2023/05/23 09:56:08 by melee            ###   ########.fr       */
+/*   Updated: 2023/05/23 11:07:02 by melee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_list	*populate(t_list *stackA, int argc, char **argv)
 	node = NULL;
 	while (i < argc)
 	{	
-		if (stackA)
+		if (!node)
 			node = stackA;		
 		if (check_string_error(argv[i]) == -1)
 			return (NULL);	
