@@ -6,7 +6,7 @@
 /*   By: melee <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 11:03:57 by melee             #+#    #+#             */
-/*   Updated: 2023/05/19 11:41:49 by melee            ###   ########.fr       */
+/*   Updated: 2023/05/23 09:56:08 by melee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,24 @@ void ft_printf(void *content)
 	printf("%s\n",content);
 }
 
+int	sorted(t_list *stackA)
+{
+	int	prev;
+	
+	prev = ft_atoi(stackA->content);
+	while (stackA)
+	{
+		stackA = stackA->next;
+		if (stackA && ft_atoi(stackA->content) < prev)
+		{
+			return (0);
+		}
+		if (stackA)
+			prev = ft_atoi(stackA->content);
+	}
+	return (1);
+}
+
 int	main(int argc, char **argv)
 {
 	t_list	*stackA;
@@ -84,14 +102,10 @@ int	main(int argc, char **argv)
 			return (0);
 		}
 	}
-	//sa(stackA);
 	ft_lstiter(stackA, ft_printf);
-	rrb(&stackB);
-rrb(&stackB);
-	printf("printing stack after ra\n");
-	ft_lstiter(stackA, ft_printf);
-
-
+	if (sorted(stackA))
+		printf("sorted\n");
+	radix_sort(&stackA, &stackB);
 	return (0);
 }
 

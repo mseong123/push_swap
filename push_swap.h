@@ -27,6 +27,7 @@ void		rr(t_list **stackA, t_list **stackB);
 void		rra(t_list **stackA);
 void		rrb(t_list **stackB);
 void		rrr(t_list **stackA, t_list **stackB);
+void		radix_sort(t_list **stackA, t_list **stackB);
 
 long int    ft_atoi_long(const char *str);
 
