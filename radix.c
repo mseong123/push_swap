@@ -6,81 +6,121 @@
 /*   By: melee <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 09:19:28 by melee             #+#    #+#             */
-/*   Updated: 2023/05/23 11:35:51 by melee            ###   ########.fr       */
+/*   Updated: 2023/05/25 12:42:47 by melee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "stdio.h"
 
-char	*getMin(t_list *stackA, int place)
+char	*getMin(t_list *stackA, size_t pos)
 {
-	char 	*res;
+	char 	*min;
 	char	*content;
-
-	res = stackA->content;
+	
+	min = NULL;
 	while (stackA)
 	{
 		content = stackA->content;
-		if (content[0] == '-' && res[0] == '-')
+		if (!min)
+			min = stackA->content;
+		else if (content[0] == '-' && min[0] == '-')
 		{
-			if (ft_strlen(content) > ft_strlen(res)) 
-				res = content;
-			else if (ft_strlen(content) == ft_strlen(res) 
-					&& content[place + 1] > res[place + 1])	
-				res = content;
-		}
-		else if (content[0] == '-' && res[0] != '-')
-			res = content;
-		else if (content[0] != '-' && res[0] != '-')
+			if (ft_strlen(content) > ft_strlen(min)) 
+				min = content;
+			else
+				if (content[ft_strlen(content) - pos -1] > min[ft_strlen(content)-pos-1])
+					min = content;
+	}
+		else if (content[0] == '-' && min[0] != '-')
+			min = content;
+		else if (content[0] != '-' && min[0] != '-')
 		{
-			if (ft_strlen(content) < ft_strlen(res))
-				res = content;
-			else if (ft_strlen(content) == ft_strlen(res) 
-				&& content[place] < res[place])
-				res = content;
+			if (pos > ft_strlen(content) - 1)
+			{
+				min = content;
+				break;
+			}
+			else if (content[ft_strlen(content)-1-pos] < min[ft_strlen(min)-1-pos])
+			{
+				min = content;
+			}
+
 		}
 		stackA = stackA->next;
 	}
-	return (res);
+	return (min);
 }
 
 
 int	get_max_place(t_list *stackA)
 {
-	size_t		res;
-	char	*content;
+	size_t		place;
+	char		*content;
 
-	res = 0;
+	place = 0;
 	while (stackA)
 	{
 		content = stackA->content;
-		if (content[0] == '-' && ft_strlen(content) - 1 > res)
-			res = ft_strlen(content) - 1;
-		else if (ft_strlen(content) > res)
-			res = ft_strlen(content);
+		if (content[0] == '-' && ft_strlen(content) - 1 > place)
+			place = ft_strlen(content) - 1;
+		else if (ft_strlen(content) > place)
+			place = ft_strlen(content);
 		stackA = stackA->next;
 	}
-	return (res);
+	return (place);
 }
 
+
+void	ft_printf1(void *content)
+{
+	printf("%s\n",content);
+}
 
 void	radix_sort(t_list **stackA, t_list **stackB)
 {
 	int		place;
 	char	*min;
+	int		pos;
+	char	*placeholder;
 
-	stackB= NULL;
 	place = get_max_place(*stackA);
-
-	//while (place)
-	//{
-	//	while (*stackA)
-	//	{
-			min = getMin(*stackA, 1);
+	printf("place %d\n",place);
+	pos = 0;
+	while (pos < place)
+	{
+		while (*stackA)
+		{
+			min = getMin(*stackA, place);
 			printf("min %s\n",min);
-	//	}
+			if (ft_atoi((*stackA)->content) == ft_atoi(min))
+				pb(stackA, stackB);
+			else 
+			{
+				placeholder = (*stackA)->content;
+				while (ft_atoi((*stackA)->content)!=ft_atoi(min))
+					pb(stackA, stackB);	
+				pb(stackA, stackB);
+				rb(stackB);
+				if (!*stackA)
+					pa(stackA, stackB);
+				else
+					while (ft_atoi((*stackA)->content)!=ft_atoi(placeholder))
+						pa(stackA, stackB);
+				rrb(stackB);
+			}		
+					}
+		while (*stackB)
+		{
+			pa(stackA, stackB);
+		}
 
-	//}	
+		pos++;
+	}
+	printf("ITERATION A\n");
+	ft_lstiter(*stackA, ft_printf1);
+	printf("ITERATION B\n");
+	ft_lstiter(*stackB, ft_printf1);
+
 
 }

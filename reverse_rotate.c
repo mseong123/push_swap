@@ -6,7 +6,7 @@
 /*   By: melee <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 11:16:03 by melee             #+#    #+#             */
-/*   Updated: 2023/05/19 11:40:51 by melee            ###   ########.fr       */
+/*   Updated: 2023/05/25 12:18:41 by melee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,16 @@
 void	rra(t_list **stackA)
 {
 	t_list *temp;
+	t_list *second_last;
 
 	temp = NULL;
-	if (*stackA)
+	second_last = *stackA;
+	if (*stackA && (*stackA)->next)
 	{
+		while (second_last->next->next)
+			second_last = second_last->next;
 		temp = ft_lstlast(*stackA);
-		(*stackA)->next->next = NULL;
+		second_last->next = NULL;
 		temp->next = *stackA;
 		*stackA = temp;	
 	}
@@ -30,12 +34,16 @@ void	rra(t_list **stackA)
 void	rrb(t_list **stackB)
 {
 	t_list *temp;
+	t_list *second_last;
 
 	temp = NULL;
-	if (*stackB)
+	second_last = *stackB;
+	if (*stackB && (*stackB)->next)
 	{
+		while (second_last->next->next)
+			second_last=second_last->next;
 		temp = ft_lstlast(*stackB);
-		(*stackB)->next->next = NULL;
+		second_last->next = NULL;
 		temp->next = *stackB;
 		*stackB = temp;	
 	}

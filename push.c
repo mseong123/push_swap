@@ -31,7 +31,7 @@ void	pb(t_list **stackA, t_list **stackB)
 	if (*stackA)
 	{
 		ft_lstadd_front(stackB, ft_lstnew((*stackA)->content));
-		temp = *stackB;
+		temp = *stackA;
 		*stackA = (*stackA)->next;
 		free(temp);
 	}

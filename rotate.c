@@ -17,7 +17,7 @@ void	ra(t_list **stackA)
 	t_list *temp;
 
 	temp = NULL;
-	if (*stackA)
+	if (*stackA && (*stackA)->next)
 	{
 		ft_lstlast(*stackA)->next = *stackA;
 		temp = *stackA;
@@ -32,7 +32,7 @@ void	rb(t_list **stackB)
 	t_list *temp;
 
 	temp = NULL;
-	if (*stackB)
+	if (*stackB && (*stackB)->next)
 	{
 		ft_lstlast(*stackB)->next = *stackB;
 		temp = *stackB;
