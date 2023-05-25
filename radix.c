@@ -6,7 +6,7 @@
 /*   By: melee <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 09:19:28 by melee             #+#    #+#             */
-/*   Updated: 2023/05/25 12:42:47 by melee            ###   ########.fr       */
+/*   Updated: 2023/05/25 13:32:40 by melee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ char	*getMin(t_list *stackA, size_t pos)
 	{
 		content = stackA->content;
 		if (!min)
+		{
 			min = stackA->content;
+		}
+		/*
 		else if (content[0] == '-' && min[0] == '-')
 		{
 			if (ft_strlen(content) > ft_strlen(min)) 
@@ -34,11 +37,13 @@ char	*getMin(t_list *stackA, size_t pos)
 	}
 		else if (content[0] == '-' && min[0] != '-')
 			min = content;
+			*/
 		else if (content[0] != '-' && min[0] != '-')
 		{
 			if (pos > ft_strlen(content) - 1)
 			{
-				min = content;
+				if (ft_strlen(content) < ft_strlen(min))
+					min = content;
 				break;
 			}
 			else if (content[ft_strlen(content)-1-pos] < min[ft_strlen(min)-1-pos])
@@ -85,42 +90,46 @@ void	radix_sort(t_list **stackA, t_list **stackB)
 	char	*placeholder;
 
 	place = get_max_place(*stackA);
-	printf("place %d\n",place);
+
+	printf("place %d\n", place);
 	pos = 0;
 	while (pos < place)
 	{
 		while (*stackA)
 		{
-			min = getMin(*stackA, place);
-			printf("min %s\n",min);
+			min = getMin(*stackA, pos);
+			printf("min %s\n", min);
+
 			if (ft_atoi((*stackA)->content) == ft_atoi(min))
 				pb(stackA, stackB);
 			else 
 			{
 				placeholder = (*stackA)->content;
+				printf("placeholder %s\n", placeholder);
 				while (ft_atoi((*stackA)->content)!=ft_atoi(min))
 					pb(stackA, stackB);	
 				pb(stackA, stackB);
 				rb(stackB);
 				if (!*stackA)
 					pa(stackA, stackB);
-				else
-					while (ft_atoi((*stackA)->content)!=ft_atoi(placeholder))
+				while (ft_atoi((*stackA)->content)!=ft_atoi(placeholder))
 						pa(stackA, stackB);
 				rrb(stackB);
 			}		
-					}
+		}
+	
 		while (*stackB)
 		{
 			pa(stackA, stackB);
 		}
-
-		pos++;
-	}
-	printf("ITERATION A\n");
+//printf("ITERATION A\n");
 	ft_lstiter(*stackA, ft_printf1);
 	printf("ITERATION B\n");
 	ft_lstiter(*stackB, ft_printf1);
+
+
+		pos++;
+	}
 
 
 }
