@@ -6,7 +6,7 @@
 /*   By: melee <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 11:03:57 by melee             #+#    #+#             */
-/*   Updated: 2023/05/23 14:09:44 by melee            ###   ########.fr       */
+/*   Updated: 2023/05/26 13:13:30 by melee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int	main(int argc, char **argv)
 	}
 	if (sorted(stackA))
 		printf("sorted\n");
-	radix_sort(&stackA, &stackB);
+	sort(&stackA, &stackB);
 
 
 	//ft_lstiter(stackA, ft_printf);
