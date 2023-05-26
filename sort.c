@@ -6,7 +6,7 @@
 /*   By: melee <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 09:19:28 by melee             #+#    #+#             */
-/*   Updated: 2023/05/26 20:18:05 by melee            ###   ########.fr       */
+/*   Updated: 2023/05/26 21:11:59 by melee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	find_max_or_min(int value, t_list *stackB)
 
 void	sort(t_list **stackA, t_list **stackB)
 {
-	int i = 100;
+	int i = 20;
 	int n = 0;
 	int	count = 1;
 	t_list *topA;
@@ -153,7 +153,7 @@ while(n < i)
 		{
 			rra(stackA);
 		}
-	
+
 		else if(count == 1)
 		{
 		
@@ -171,7 +171,7 @@ while(n < i)
 				
 				else
 				{
-					if (count > ft_lstsize(*stackB))
+					if (count > ft_lstsize(*stackA) || count > ft_lstsize(*stackB) )
 					{
 						count = 1;
 						break;	
@@ -195,7 +195,7 @@ while(n < i)
 				
 				else
 				{
-					if (count > ft_lstsize(*stackB))
+					if (count > ft_lstsize(*stackA) || count > ft_lstsize(*stackB))
 					{
 						count = 1;
 						break;
@@ -204,7 +204,56 @@ while(n < i)
 				}	
 			}
 	}
-	
+
+else if (count == 1)
+	{	
+	while (count>0)
+			{
+				topA = get_top(*stackA, count+1);
+				topB = get_top(*stackB, count);
+				if (topA && topB && find_max_or_min(ft_atoi(topA->content), *stackB) && ft_atoi(topB->content)==find_max(*stackB))
+					{
+						rr(stackA,stackB);
+						count--;
+					}
+				
+				else
+				{
+					if (count > ft_lstsize(*stackA) || count > ft_lstsize(*stackB))
+					{
+						count = 1;
+						break;	
+					}
+					count++;
+				}
+
+			}
+	}
+
+	else if (count == 1)
+	{
+	while (count>0)
+			{
+				bottomA = get_bottom(*stackA, count);
+				bottomB = get_bottom(*stackB, count-1);
+				if (bottomA && bottomB && find_max_or_min(ft_atoi(bottomA->content), *stackB) && ft_atoi(bottomB->content)==find_max(*stackB))
+					{
+						rrr(stackA,stackB);
+						count--;
+					}
+				
+				else
+				{
+					if (count > ft_lstsize(*stackA) || count > ft_lstsize(*stackB))
+					{
+						count = 1;
+						break;
+					}	
+					count++;
+				}	
+			}
+	}
+
 
 		
 
