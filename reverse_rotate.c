@@ -52,6 +52,30 @@ void	rrb(t_list **stackB)
 
 void	rrr(t_list **stackA, t_list **stackB)
 {
-	rra(stackA);
-	rrb(stackB);
+	t_list *temp;
+	t_list *second_last;
+
+	temp = NULL;
+	second_last = *stackA;
+	if (*stackA && (*stackA)->next)
+	{
+		while (second_last->next->next)
+			second_last = second_last->next;
+		temp = ft_lstlast(*stackA);
+		second_last->next = NULL;
+		temp->next = *stackA;
+		*stackA = temp;	
+	}
+	temp = NULL;
+	second_last = *stackB;
+	if (*stackB && (*stackB)->next)
+	{
+		while (second_last->next->next)
+			second_last=second_last->next;
+		temp = ft_lstlast(*stackB);
+		second_last->next = NULL;
+		temp->next = *stackB;
+		*stackB = temp;	
+	}
+	ft_putstr_fd("rrr\n", FD);
 }

@@ -44,7 +44,24 @@ void	rb(t_list **stackB)
 
 void	rr(t_list **stackA, t_list **stackB)
 {
-	ra(stackA);
-	rb(stackB);
+	t_list *temp;
+
+	temp = NULL;
+	if (*stackA && (*stackA)->next)
+	{
+		ft_lstlast(*stackA)->next = *stackA;
+		temp = *stackA;
+		*stackA = (*stackA)->next; 	
+		temp->next = NULL;
+	}
+	temp = NULL;
+	if (*stackB && (*stackB)->next)
+	{
+		ft_lstlast(*stackB)->next = *stackB;
+		temp = *stackB;
+		*stackB = (*stackB)->next; 	
+		temp->next = NULL;
+	}
+	ft_putstr_fd("rr\n", FD);
 }
 

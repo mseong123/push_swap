@@ -6,7 +6,7 @@
 /*   By: melee <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 09:19:28 by melee             #+#    #+#             */
-/*   Updated: 2023/05/26 16:34:34 by melee            ###   ########.fr       */
+/*   Updated: 2023/05/26 17:14:49 by melee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ void	sort(t_list **stackA, t_list **stackB)
 	while (ft_lstsize(*stackB)!=2)
 		pb(stackA,stackB);
 
-	pb(stackA, stackB);
 //while(*stackA)
 //{
 	
@@ -98,25 +97,27 @@ void	sort(t_list **stackA, t_list **stackB)
 			pb(stackA, stackB);
 			//break;
 		}
-		else if (find_max_or_min(ft_atoi((*stackA)->content), *stackB) && ft_atoi((*stackB)->next->content) == find_max(*stackB))
+		if (find_max_or_min(ft_atoi((*stackA)->content), *stackB) && ft_atoi((*stackB)->next->content) == find_max(*stackB))
 		{
 			rb(stackB);
 		}
 		else if (find_max_or_min(ft_atoi((*stackA)->content), *stackB) && ft_atoi(ft_lstlast(*stackB)->content) == find_max(*stackB))
 		{
-			printf("here");
 			rrb(stackB);
 		}
-
-	
-	/*
-		else if (ft_atoi((*stackA)->content) > ft_atoi((*stackB)->content) && ft_atoi((*stackA)->content) < ft_atoi(ft_lstlast(*stackB)->content))
+		else if (find_max_or_min(ft_atoi((*stackA)->next->content), *stackB) && ft_atoi((*stackB)->content) == find_max(*stackB))
 		{
-			pb(stackA, stackB);
-			break;
+			ra(stackA);
 		}
-		*/
-			
+		
+		else if (find_max_or_min(ft_atoi(ft_lstlast(*stackA)->content), *stackB) && ft_atoi((*stackB)->content) == find_max(*stackB))
+		{
+			rra(stackA);
+		}
+		
+		
+		
+				
 //	}
 //}
 				
