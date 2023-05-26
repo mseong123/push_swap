@@ -6,7 +6,7 @@
 /*   By: melee <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 09:19:28 by melee             #+#    #+#             */
-/*   Updated: 2023/05/26 18:36:33 by melee            ###   ########.fr       */
+/*   Updated: 2023/05/26 20:18:05 by melee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,12 @@ void ft_printf1(void *content)
 	
 	printf("%s\n",content);
 }
-/*
+
 t_list *get_top(t_list *stack, int n)
 {
-	i = 0;
+	int i = 0;
 
-	while (i < n)
+	while (i < n && stack)
 	{
 		stack = stack->next;
 		i++;
@@ -62,11 +62,19 @@ t_list *get_top(t_list *stack, int n)
 	return (stack);
 }
 
-t_list *get_bottom(t_list **stack, int n)
+t_list *get_bottom(t_list *stack, int n)
 {
+	int i = 0;
 
+	stack = ft_lstlast(stack);
+	while (i < n && stack)
+	{
+		stack = stack->prev;
+		i++;
+	}
+	return (stack);
 }
-*/
+
 int	find_max_or_min(int value, t_list *stackB)
 {
 	if (value < find_min(stackB) || value > find_max(stackB))
@@ -78,13 +86,23 @@ int	find_max_or_min(int value, t_list *stackB)
 
 void	sort(t_list **stackA, t_list **stackB)
 {
-	int i = 16;
+	int i = 100;
 	int n = 0;
+	int	count = 1;
+	t_list *topA;
+	t_list *topB;
+	t_list *bottomA;
+	t_list *bottomB;
+
+
 
 	//printf("max %d\n",find_max(*stackA));	
 
 	while (ft_lstsize(*stackB)!=2)
 		pb(stackA,stackB);
+
+	//pb(stackA,stackB);
+	//pb(stackA,stackB);
 
 while(n < i)
 {
@@ -136,22 +154,74 @@ while(n < i)
 			rra(stackA);
 		}
 	
+		else if(count == 1)
+		{
+		
+		
+		
+			while (count>0)
+			{
+				topA = get_top(*stackA, count);
+				topB = get_top(*stackB, count + 1);
+				if (topA && topB && find_max_or_min(ft_atoi(topA->content), *stackB) && ft_atoi(topB->content)==find_max(*stackB))
+					{
+						rr(stackA,stackB);
+						count--;
+					}
+				
+				else
+				{
+					if (count > ft_lstsize(*stackB))
+					{
+						count = 1;
+						break;	
+					}
+					count++;
+				}
+			}
+		}
+
+	else if (count == 1)
+	{	
+	while (count>0)
+			{
+				bottomA = get_bottom(*stackA, count-1);
+				bottomB = get_bottom(*stackB, count);
+				if (bottomA && bottomB && find_max_or_min(ft_atoi(bottomA->content), *stackB) && ft_atoi(bottomB->content)==find_max(*stackB))
+					{
+						rrr(stackA,stackB);
+						count--;
+					}
+				
+				else
+				{
+					if (count > ft_lstsize(*stackB))
+					{
+						count = 1;
+						break;
+					}	
+					count++;
+				}	
+			}
+	}
+	
+
 		
 
-				printf("stackA\n");
-	ft_lstiter(*stackA, ft_printf1);
-	printf("stackB\n");
-	ft_lstiter(*stackB, ft_printf1);
+				
 	
 
 n++;
-printf("count = %d\n",n);
 				
 
 
 }
 
-	
+		printf("stackA\n");
+	ft_lstiter(*stackA, ft_printf1);
+	printf("stackB\n");
+	ft_lstiter(*stackB, ft_printf1);
+
 
 				
 
