@@ -6,7 +6,7 @@
 /*   By: melee <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 09:19:28 by melee             #+#    #+#             */
-/*   Updated: 2023/05/26 18:18:49 by melee            ###   ########.fr       */
+/*   Updated: 2023/05/26 18:36:33 by melee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int	find_min(t_list *stackB)
 
 void ft_printf1(void *content)
 {
+	
 	printf("%s\n",content);
 }
 /*
@@ -77,36 +78,27 @@ int	find_max_or_min(int value, t_list *stackB)
 
 void	sort(t_list **stackA, t_list **stackB)
 {
-	//int i = 1;
+	int i = 16;
+	int n = 0;
 
 	//printf("max %d\n",find_max(*stackA));	
 
 	while (ft_lstsize(*stackB)!=2)
 		pb(stackA,stackB);
 
-	pb(stackA,stackB);
-	pb(stackA,stackB);
-//while(*stackA)
-//{
-	
-//	while (i)
-//	{
-//	
-/*
-		if (ft_atoi((*stackB)->content) == find_max(*stackB) && find_max_or_min(ft_atoi((*stackA)->content), *stackB))
+while(n < i)
+{
+		if (ft_lstsize(*stackA) == 1)
+			pb(stackA,stackB);
+		else if (ft_atoi((*stackB)->content) == find_max(*stackB) && find_max_or_min(ft_atoi((*stackA)->content), *stackB))
 		{
 			pb(stackA, stackB);
-			//break;
-		}
-		
-		if (ft_atoi((*stackA)->content) > ft_atoi((*stackB)->content) && ft_atoi((*stackA)->content) < ft_atoi(ft_lstlast(*stackB)->content))
+		}	
+		else if (ft_atoi((*stackA)->content) > ft_atoi((*stackB)->content) && ft_atoi((*stackA)->content) < ft_atoi(ft_lstlast(*stackB)->content))
 		{
-			printf("middle");
 			pb(stackA, stackB);
 		}
-		
-
-		if (find_max_or_min(ft_atoi((*stackA)->content), *stackB) && ft_atoi((*stackB)->next->content) == find_max(*stackB))
+		else if (find_max_or_min(ft_atoi((*stackA)->content), *stackB) && ft_atoi((*stackB)->next->content) == find_max(*stackB))
 		{
 			rb(stackB);
 		}
@@ -124,38 +116,47 @@ void	sort(t_list **stackA, t_list **stackB)
 			rra(stackA);
 		}	
 		
-		if (ft_atoi((*stackA)->content) > ft_atoi((*stackB)->next->content) && ft_atoi((*stackA)->content) < ft_atoi((*stackB)->content))
+		else if (ft_atoi((*stackA)->content) > ft_atoi((*stackB)->next->content) && ft_atoi((*stackA)->content) < ft_atoi((*stackB)->content))
 		{
 			rb(stackB);
 		}
 		
-		if (ft_atoi((*stackA)->content) > ft_atoi(ft_lstlast(*stackB)->content) && ft_atoi((*stackA)->content) < ft_atoi((*stackB)->content))
+		else if (ft_atoi((*stackA)->content) > ft_atoi(ft_lstlast(*stackB)->content) && ft_atoi((*stackA)->content) < ft_atoi((*stackB)->content))
 		{
 			rrb(stackB);
 		}
 		
-		if (ft_atoi((*stackA)->next->content) > ft_atoi((*stackB)->content) && ft_atoi((*stackA)->next->content) < ft_atoi(ft_lstlast(*stackB)->content))
+		else if (ft_atoi((*stackA)->next->content) > ft_atoi((*stackB)->content) && ft_atoi((*stackA)->next->content) < ft_atoi(ft_lstlast(*stackB)->content))
 		{
 			ra(stackA);
 		}
-*/
-		if (ft_atoi(ft_lstlast(*stackA)->content) > ft_atoi((*stackB)->content) && ft_atoi(ft_lstlast(*stackA)->content) < ft_atoi(ft_lstlast(*stackB)->content))
+
+		else if (ft_atoi(ft_lstlast(*stackA)->content) > ft_atoi((*stackB)->content) && ft_atoi(ft_lstlast(*stackA)->content) < ft_atoi(ft_lstlast(*stackB)->content))
 		{
 			rra(stackA);
 		}
+	
+		
 
+				printf("stackA\n");
+	ft_lstiter(*stackA, ft_printf1);
+	printf("stackB\n");
+	ft_lstiter(*stackB, ft_printf1);
+	
+
+n++;
+printf("count = %d\n",n);
+				
+
+
+}
 
 	
-//	}
-//}
+
 				
 
 
 
-	printf("stackA\n");
-	ft_lstiter(*stackA, ft_printf1);
-	printf("stackB\n");
-	ft_lstiter(*stackB, ft_printf1);
 
 }
 
