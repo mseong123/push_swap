@@ -15,7 +15,7 @@ all: $(NAME)
 
 $(NAME): $(OBJECTS)
 	make bonus -C ./libft
-	clang -fsanitize=address -g $(OBJECTS) -o $(NAME) -L./libft -lft
+	cc -fsanitize=address -g $(OBJECTS) -o $(NAME) -L./libft -lft
 
 clean:
 	make clean -C ./libft

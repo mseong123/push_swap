@@ -15,13 +15,18 @@
 void	ra(t_list **stackA)
 {
 	t_list *temp;
+	t_list *last;
 
 	temp = NULL;
+	last = NULL;
 	if (*stackA && (*stackA)->next)
 	{
-		ft_lstlast(*stackA)->next = *stackA;
+		last = ft_lstlast(*stackA);
+		last->next = *stackA;
 		temp = *stackA;
-		*stackA = (*stackA)->next; 	
+		temp->prev = last;
+		*stackA = (*stackA)->next;
+		(*stackA)->prev = NULL;
 		temp->next = NULL;
 	}
 	ft_putstr_fd("ra\n", FD);
@@ -30,13 +35,18 @@ void	ra(t_list **stackA)
 void	rb(t_list **stackB)
 {
 	t_list *temp;
+	t_list *last;
 
 	temp = NULL;
+	last = NULL;
 	if (*stackB && (*stackB)->next)
 	{
-		ft_lstlast(*stackB)->next = *stackB;
+		last = ft_lstlast(*stackB);
+		last->next = *stackB;
 		temp = *stackB;
+		temp->prev = last;
 		*stackB = (*stackB)->next; 	
+		(*stackB)->prev = NULL;
 		temp->next = NULL;
 	}
 	ft_putstr_fd("rb\n", FD);
@@ -45,21 +55,30 @@ void	rb(t_list **stackB)
 void	rr(t_list **stackA, t_list **stackB)
 {
 	t_list *temp;
+	t_list *last;
 
 	temp = NULL;
+	last = NULL;
 	if (*stackA && (*stackA)->next)
 	{
-		ft_lstlast(*stackA)->next = *stackA;
+		last = ft_lstlast(*stackA);
+		last->next = *stackA;
 		temp = *stackA;
+		temp->prev = last;
 		*stackA = (*stackA)->next; 	
+		(*stackA)->prev = NULL;
 		temp->next = NULL;
 	}
 	temp = NULL;
+	last = NULL;
 	if (*stackB && (*stackB)->next)
 	{
-		ft_lstlast(*stackB)->next = *stackB;
+		last = ft_lstlast(*stackB);
+		last->next = *stackB;
 		temp = *stackB;
+		temp->prev = last;
 		*stackB = (*stackB)->next; 	
+		(*stackB)->prev = NULL;
 		temp->next = NULL;
 	}
 	ft_putstr_fd("rr\n", FD);

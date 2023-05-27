@@ -6,7 +6,7 @@
 /*   By: melee <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 11:03:57 by melee             #+#    #+#             */
-/*   Updated: 2023/05/26 13:13:30 by melee            ###   ########.fr       */
+/*   Updated: 2023/05/27 11:33:06 by melee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,22 @@ int	sorted(t_list *stackA)
 	return (1);
 }
 
+void	ft_lstiterbackwards(t_list *lst, void (*f)(void *))
+{
+	t_list	*node;
+
+	if (lst && f)
+	{
+		node = lst;
+		while (node)
+		{
+			f(node->content);
+			node = node->prev;
+		}
+	}
+}
+
+
 int	main(int argc, char **argv)
 {
 	t_list	*stackA;
@@ -105,9 +121,33 @@ int	main(int argc, char **argv)
 	if (sorted(stackA))
 		printf("sorted\n");
 	sort(&stackA, &stackB);
+	
+	/*testing
+	pb(&stackA,&stackB);
 
+	pb(&stackA,&stackB);
+	pb(&stackA,&stackB);
+	pb(&stackA,&stackB);
+	rrr(&stackA,&stackB);
+	ra(&stackA);
+	pa(&stackA,&stackB);
+	rr(&stackA,&stackB);
+	rb(&stackB);
+	pb(&stackA,&stackB);
 
-	//ft_lstiter(stackA, ft_printf);
+	printf("stackA\n");	
+	ft_lstiter(stackA, ft_printf);
+	stackA=ft_lstlast(stackA);
+printf("stackA backwards\n");	
+	ft_lstiterbackwards(stackA, ft_printf);
+
+printf("stackB\n");	
+	ft_lstiter(stackB, ft_printf);
+	stackB=ft_lstlast(stackB);
+printf("stackB backwards\n");	
+	ft_lstiterbackwards(stackB, ft_printf);
+
+	*/
 	return (0);
 }
 

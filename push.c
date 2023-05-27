@@ -20,6 +20,7 @@ void	pa(t_list **stackA, t_list **stackB)
 		ft_lstadd_front(stackA, ft_lstnew((*stackB)->content));
 		temp = *stackB;
 		*stackB = (*stackB)->next;
+		(*stackB)->prev = NULL;
 		free(temp);
 	}
 	ft_putstr_fd("pa\n", FD);
@@ -33,6 +34,7 @@ void	pb(t_list **stackA, t_list **stackB)
 		ft_lstadd_front(stackB, ft_lstnew((*stackA)->content));
 		temp = *stackA;
 		*stackA = (*stackA)->next;
+		(*stackA)->prev = NULL;
 		free(temp);
 	}
 	ft_putstr_fd("pb\n", FD);
