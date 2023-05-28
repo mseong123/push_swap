@@ -6,7 +6,7 @@
 /*   By: melee <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 09:19:28 by melee             #+#    #+#             */
-/*   Updated: 2023/05/28 16:35:16 by melee            ###   ########.fr       */
+/*   Updated: 2023/05/28 17:36:41 by melee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,21 +46,6 @@ int	find_min(t_list *stackB)
 void ft_printf1(void *content)
 {
 	printf("%s\n",content);
-}
-
-void	ft_lstiterbackwards1(t_list *lst, void (*f)(void *))
-{
-	t_list	*node;
-
-	if (lst && f)
-	{
-		node = lst;
-		while (node)
-		{
-			f(node->content);
-			node = node->prev;
-		}
-	}
 }
 
 int	find_max_or_min(int value, t_list *stackB)
@@ -337,33 +322,26 @@ void	count_in_between(t_list *stackA, t_list *stackB, t_operations *ptr)
 void	sort(t_list **stackA, t_list **stackB)
 {
 	t_operations *ptr;
+	int	maxB;
 
 	ptr = init();
-
 	while (*stackA)
 	{
 		count_max_min(*stackA, *stackB, ptr);
 		count_in_between(*stackA, *stackB, ptr);
 		execute_operations(stackA, stackB, ptr);
 	}
-	
-	   		
-	/*
-		printf("ra %d\n", ptr->ra);
-	printf("rb %d\n", ptr->rb);
-	printf("rra %d\n", ptr->rra);
-	printf("rrb %d\n", ptr->rrb);
-	printf("rr %d\n", ptr->rr);
-	printf("rrr %d\n", ptr->rrr);
+	maxB = find_max(*stackB);
+	if (count_pos_stack(maxB, *stackB) <= ft_lstsize(*stackB))
+		while (ft_atoi((*stackB)->content) != maxB)
+			rb(stackB);
+	else
+		while (ft_atoi((*stackB)->content) != maxB)
+			rrb(stackB);
+	while(*stackB)
+		pa(stackA, stackB);
 
-	printf("temp ra %d\n", ptr->temp_ra);
-	printf("temp rb %d\n", ptr->temp_rb);
-	printf("temp rra %d\n", ptr->temp_rra);
-	printf("temp rrb %d\n", ptr->temp_rrb);
-	printf("temp rr %d\n", ptr->temp_rr);
-	printf("temp rrr %d\n", ptr->temp_rrr);
-
-
+/*
 	printf("stackA\n");
 	ft_lstiter(*stackA, ft_printf1);
 	printf("stackB\n");
