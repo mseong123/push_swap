@@ -6,7 +6,7 @@
 /*   By: melee <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 09:19:28 by melee             #+#    #+#             */
-/*   Updated: 2023/05/28 14:53:44 by melee            ###   ########.fr       */
+/*   Updated: 2023/05/28 15:48:02 by melee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -271,20 +271,80 @@ void	count_max_min(t_list *stackA, t_list *stackB, t_operations *ptr)
 	}	
 }
 
+int	find_prev_value(int	value, t_list *stackB)
+{
+	int	prev_value;
+	
+	prev_value = find_min(stackB);
+	while (stackB)
+	{
+		if (ft_atoi(stackB->content) > prev_value && ft_atoi(stackB->content) < value)
+		{
+			prev_value = ft_atoi(stackB->content);
+		}
+		stackB = stackB->next;
+	}
+	return (prev_value);
+}
+
+void	count_in_between(t_list *stackA, t_list *stackB, t_operations *ptr)
+{
+	int	targetA;
+	int targetB;
+	t_list *node;
+
+	node = stackA;
+	while (node && stackB)
+	{
+		if (!find_max_or_min(ft_atoi(node->content), stackB))
+		{
+			targetA = count_pos_stack(ft_atoi(node->content), stackA);
+			targetB = count_pos_stack(find_prev_value(ft_atoi(node->content), stackB), stackB);
+			if (targetA <= (ft_lstsize(stackA) / 2) && targetB <= (ft_lstsize(stackB) / 2))
+			{
+				upper_half(targetA, targetB, ptr);
+				compare_operations(ptr);
+			}
+			else if (targetA > (ft_lstsize(stackA) / 2) && targetB > (ft_lstsize(stackB) / 2))
+			{
+				targetA = ft_lstsize(stackA) - targetA;
+				targetB = ft_lstsize(stackB) - targetB;
+				bottom_half(targetA, targetB, ptr);
+				compare_operations(ptr);
+			}
+			else if (targetA <= (ft_lstsize(stackA) / 2) && targetB > (ft_lstsize(stackB) / 2))
+			{
+				targetB = ft_lstsize(stackB) - targetB;
+				mix1(targetA, targetB, ptr);
+				compare_operations(ptr);
+			}
+			
+			else if (targetA > (ft_lstsize(stackA) / 2) && targetB <= (ft_lstsize(stackB) / 2))
+			{
+				targetA = ft_lstsize(stackA) - targetA;
+				mix2(targetA, targetB, ptr);
+				compare_operations(ptr);
+			}
+		}
+		node = node->next;
+	}
+
+
+}
+
 
 void	sort(t_list **stackA, t_list **stackB)
 {
 	t_operations *ptr;
 	int i = 0;
-	int	max = 30;
+	int	max = 1000;
 
 	ptr = init();
-
-	//pb(stackA, stackB);
 
 	while (i < max && *stackA)
 	{
 		count_max_min(*stackA, *stackB, ptr);
+		count_in_between(*stackA, *stackB, ptr);
 		execute_operations(stackA, stackB, ptr);
 		i++;
 	}
@@ -305,12 +365,12 @@ void	sort(t_list **stackA, t_list **stackB)
 	printf("temp rr %d\n", ptr->temp_rr);
 	printf("temp rrr %d\n", ptr->temp_rrr);
 
-*/
+
 	printf("stackA\n");
 	ft_lstiter(*stackA, ft_printf1);
 	printf("stackB\n");
 	ft_lstiter(*stackB, ft_printf1);
-
+*/
 
 	
 	
