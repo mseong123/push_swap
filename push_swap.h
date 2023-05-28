@@ -6,7 +6,7 @@
 /*   By: melee <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 10:58:16 by melee             #+#    #+#             */
-/*   Updated: 2023/05/28 09:16:08 by melee            ###   ########.fr       */
+/*   Updated: 2023/05/28 13:36:15 by melee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_operations
 	int	temp_rrb;
 	int	temp_rr;
 	int	temp_rrr;
+	int	first_time;
 }	t_operations;
 
 void		sa(t_list *stackA);

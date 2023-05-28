@@ -6,7 +6,7 @@
 /*   By: melee <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 09:19:28 by melee             #+#    #+#             */
-/*   Updated: 2023/05/28 11:58:37 by melee            ###   ########.fr       */
+/*   Updated: 2023/05/28 14:53:44 by melee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ t_operations	*init(void)
 	ptr->temp_rrb = 0;
 	ptr->temp_rr = 0;
 	ptr->temp_rrr = 0;
+	ptr->first_time = 1;
 	return (ptr);
 }
 
@@ -123,8 +124,8 @@ void	compare_operations(t_operations *ptr)
 	int temp_total;
 
 	current_total = ptr->ra + ptr->rb + ptr->rra + ptr->rrb + ptr->rr + ptr-> rrr;
-	temp_total = ptr->temp_ra + ptr->temp_rb + ptr->temp_rra + ptr->temp_rrb + ptr->temp_rr + ptr-> temp_rrr; 
-	if (temp_total < current_total || current_total == 0)
+	temp_total = ptr->temp_ra + ptr->temp_rb + ptr->temp_rra + ptr->temp_rrb + ptr->temp_rr + ptr-> temp_rrr;
+	if (ptr->first_time)
 	{
 		ptr->ra = ptr->temp_ra;
 		ptr->rb = ptr->temp_rb;
@@ -132,9 +133,55 @@ void	compare_operations(t_operations *ptr)
 		ptr->rrb = ptr->temp_rrb;
 		ptr->rr = ptr->temp_rr;
 		ptr->rrr = ptr->temp_rrr;
+		ptr->first_time = 0;
 	}
+	else if (temp_total < current_total)
+	{
+		ptr->ra = ptr->temp_ra;
+		ptr->rb = ptr->temp_rb;
+		ptr->rra = ptr->temp_rra;
+		ptr->rrb = ptr->temp_rrb;
+		ptr->rr = ptr->temp_rr;
+		ptr->rrr = ptr->temp_rrr;
+	}	
 	reset_temp(ptr);
-	
+}
+
+void	execute_operations(t_list **stackA, t_list **stackB, t_operations *ptr)
+{
+		while (ptr->ra)
+		{
+			ra(stackA);
+			ptr->ra--;
+		}	
+		while (ptr->rb)
+		{
+			rb(stackB);
+			ptr->rb--;
+		}
+		while (ptr->rra)
+		{
+			rra(stackA);
+			ptr->rra--;
+		}
+		while (ptr->rrb)
+		{
+			rrb(stackB);
+			ptr->rrb--;
+		}
+		while (ptr->rr)
+		{
+			rr(stackA, stackB);
+			ptr->rr--;
+		}
+		while (ptr->rrr)
+		{
+			rrr(stackA, stackB);
+			ptr->rrr--;
+		}
+		pb(stackA, stackB);
+		ptr->first_time = 1;
+
 }
 
 void	upper_half(int	targetA, int targetB, t_operations *ptr)
@@ -186,10 +233,11 @@ void	count_max_min(t_list *stackA, t_list *stackB, t_operations *ptr)
 	t_list *node;
 
 	node = stackA;
-	while (node)
+	while (node && stackB)
 	{
+
 		if (find_max_or_min(ft_atoi(node->content), stackB))
-		{
+		{	
 			targetA = count_pos_stack(ft_atoi(node->content), stackA);
 			targetB = count_pos_stack(find_max(stackB), stackB);
 			if (targetA <= (ft_lstsize(stackA) / 2) && targetB <= (ft_lstsize(stackB) / 2))
@@ -218,8 +266,8 @@ void	count_max_min(t_list *stackA, t_list *stackB, t_operations *ptr)
 				compare_operations(ptr);
 			}
 		}
+
 		node = node->next;
-		targetA++;
 	}	
 }
 
@@ -227,17 +275,23 @@ void	count_max_min(t_list *stackA, t_list *stackB, t_operations *ptr)
 void	sort(t_list **stackA, t_list **stackB)
 {
 	t_operations *ptr;
+	int i = 0;
+	int	max = 30;
 
 	ptr = init();
-	
 
-	pb(stackA, stackB);
-	pb(stackA, stackB);
-	pb(stackA, stackB);
-	pb(stackA, stackB);
-	pb(stackA, stackB);
-	count_max_min(*stackA, *stackB, ptr);
-	printf("ra %d\n", ptr->ra);
+	//pb(stackA, stackB);
+
+	while (i < max && *stackA)
+	{
+		count_max_min(*stackA, *stackB, ptr);
+		execute_operations(stackA, stackB, ptr);
+		i++;
+	}
+	
+	   		
+/*	
+		printf("ra %d\n", ptr->ra);
 	printf("rb %d\n", ptr->rb);
 	printf("rra %d\n", ptr->rra);
 	printf("rrb %d\n", ptr->rrb);
@@ -250,13 +304,15 @@ void	sort(t_list **stackA, t_list **stackB)
 	printf("temp rrb %d\n", ptr->temp_rrb);
 	printf("temp rr %d\n", ptr->temp_rr);
 	printf("temp rrr %d\n", ptr->temp_rrr);
-   		
 
+*/
 	printf("stackA\n");
 	ft_lstiter(*stackA, ft_printf1);
 	printf("stackB\n");
 	ft_lstiter(*stackB, ft_printf1);
 
+
+	
 	
 				
 
