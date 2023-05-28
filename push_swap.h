@@ -6,7 +6,7 @@
 /*   By: melee <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 10:58:16 by melee             #+#    #+#             */
-/*   Updated: 2023/05/19 11:17:02 by melee            ###   ########.fr       */
+/*   Updated: 2023/05/28 09:16:08 by melee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,24 @@
 
 # include "libft.h"
 
-void	    sa(t_list *stackA);
-void	    sb(t_list *stackB);
+typedef struct s_operations
+{
+	int	ra;
+	int	rb;
+	int	rra;
+	int	rrb;
+	int	rr;
+	int	rrr;
+	int	temp_ra;
+	int	temp_rb;
+	int	temp_rra;
+	int	temp_rrb;
+	int	temp_rr;
+	int	temp_rrr;
+}	t_operations;
+
+void		sa(t_list *stackA);
+void		sb(t_list *stackB);
 void		ss(t_list *stackA, t_list *stackB);
 void		pa(t_list **stackA, t_list **stackB);
 void		pb(t_list **stackA, t_list **stackB);
@@ -28,7 +44,6 @@ void		rra(t_list **stackA);
 void		rrb(t_list **stackB);
 void		rrr(t_list **stackA, t_list **stackB);
 void		sort(t_list **stackA, t_list **stackB);
-
-long int    ft_atoi_long(const char *str);
+long int	ft_atoi_long(const char *str);
 
 #endif
