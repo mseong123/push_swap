@@ -6,7 +6,7 @@
 /*   By: melee <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 09:19:28 by melee             #+#    #+#             */
-/*   Updated: 2023/05/28 15:48:02 by melee            ###   ########.fr       */
+/*   Updated: 2023/05/28 16:35:16 by melee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -321,6 +321,7 @@ void	count_in_between(t_list *stackA, t_list *stackB, t_operations *ptr)
 			
 			else if (targetA > (ft_lstsize(stackA) / 2) && targetB <= (ft_lstsize(stackB) / 2))
 			{
+
 				targetA = ft_lstsize(stackA) - targetA;
 				mix2(targetA, targetB, ptr);
 				compare_operations(ptr);
@@ -336,21 +337,18 @@ void	count_in_between(t_list *stackA, t_list *stackB, t_operations *ptr)
 void	sort(t_list **stackA, t_list **stackB)
 {
 	t_operations *ptr;
-	int i = 0;
-	int	max = 1000;
 
 	ptr = init();
 
-	while (i < max && *stackA)
+	while (*stackA)
 	{
 		count_max_min(*stackA, *stackB, ptr);
 		count_in_between(*stackA, *stackB, ptr);
 		execute_operations(stackA, stackB, ptr);
-		i++;
 	}
 	
 	   		
-/*	
+	/*
 		printf("ra %d\n", ptr->ra);
 	printf("rb %d\n", ptr->rb);
 	printf("rra %d\n", ptr->rra);
