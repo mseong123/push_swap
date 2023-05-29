@@ -6,40 +6,43 @@
 /*   By: melee <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 11:53:59 by melee             #+#    #+#             */
-/*   Updated: 2023/05/19 11:15:26 by melee            ###   ########.fr       */
+/*   Updated: 2023/05/29 12:05:56 by melee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sa(t_list *stackA)
+void	sa(t_list *stack_a, int together)
 {
 	void	*temp;
 
-	if (stackA->next)
+	if (stack_a->next)
 	{
-		temp = stackA->content;
-		stackA->content = stackA->next->content;
-		stackA->next->content = temp;
+		temp = stack_a->content;
+		stack_a->content = stack_a->next->content;
+		stack_a->next->content = temp;
 	}
-	ft_putstr_fd("sa\n", FD);
+	if (!together)
+		ft_putstr_fd("sa\n", FD);
 }
 
-void	sb(t_list *stackB)
+void	sb(t_list *stack_b, int together)
 {
 	void	*temp;
 
-	if (stackB->next)
+	if (stack_b->next)
 	{
-		temp = stackB->content;
-		stackB->content = stackB->next->content;
-		stackB->next->content = temp;
+		temp = stack_b->content;
+		stack_b->content = stack_b->next->content;
+		stack_b->next->content = temp;
 	}
-	ft_putstr_fd("sb\n", FD);
+	if (!together)
+		ft_putstr_fd("sb\n", FD);
 }
 
-void	ss(t_list *stackA, t_list *stackB)
+void	ss(t_list *stack_a, t_list *stack_b)
 {
-	sa(stackA);
-	sb(stackB);
+	sa(stack_a, 1);
+	sb(stack_b, 1);
+	ft_putstr_fd("ss\n", FD);
 }

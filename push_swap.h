@@ -6,7 +6,7 @@
 /*   By: melee <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 10:58:16 by melee             #+#    #+#             */
-/*   Updated: 2023/05/28 13:36:15 by melee            ###   ########.fr       */
+/*   Updated: 2023/05/29 11:24:17 by melee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,19 @@ typedef struct s_operations
 	int	first_time;
 }	t_operations;
 
-void		sa(t_list *stackA);
-void		sb(t_list *stackB);
-void		ss(t_list *stackA, t_list *stackB);
-void		pa(t_list **stackA, t_list **stackB);
-void		pb(t_list **stackA, t_list **stackB);
-void		ra(t_list **stackA);
-void		rb(t_list **stackB);
-void		rr(t_list **stackA, t_list **stackB);
-void		rra(t_list **stackA);
-void		rrb(t_list **stackB);
-void		rrr(t_list **stackA, t_list **stackB);
-void		sort(t_list **stackA, t_list **stackB);
+void		sa(t_list *stack_a, int together);
+void		sb(t_list *stack_b, int together);
+void		ss(t_list *stack_a, t_list *stack_b);
+void		pa(t_list **stack_a, t_list **stack_b);
+void		pb(t_list **stack_a, t_list **stack_b);
+void		ra(t_list **stack_a, int together);
+void		rb(t_list **stack_b, int together);
+void		rr(t_list **stack_a, t_list **stack_b);
+void		rra(t_list **stack_a, int together);
+void		rrb(t_list **stack_b, int together);
+void		rrr(t_list **stack_a, t_list **stack_b);
+void		big_sort(t_list **stack_a, t_list **stack_b);
 long int	ft_atoi_long(const char *str);
+int			sorted(t_list *stack_a);
 
 #endif

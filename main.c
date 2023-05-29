@@ -6,14 +6,14 @@
 /*   By: melee <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 11:03:57 by melee             #+#    #+#             */
-/*   Updated: 2023/05/28 10:15:49 by melee            ###   ########.fr       */
+/*   Updated: 2023/05/29 12:41:57 by melee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 
-int	check_string_error(char *str)
+int	chk_str_err(char *str)
 {
 	int		i;
 	int		res;
@@ -24,106 +24,96 @@ int	check_string_error(char *str)
 	{
 		if (!ft_isdigit(str[i]))
 		{
-			if (str[i] == '-' && i == 0)
-				res = 1;	
+			if (str[i] == '-' && i == 0 && ft_isdigit(str[i + 1]))
+				res = 1;
+			else if (str[i] == '+' && i == 0 && ft_isdigit(str[i + 1]))
+				res = 1;
 			else
-				res = -1;
+				res = 0;
 		}
 		i++;
 	}
 	return (res);
 }
 
+int	chk_dup_str(char *str, t_list *stack_a)
+{
+	int	count;
 
-t_list	*populate(t_list *stackA, int argc, char **argv)
+	count = 0;
+	while (stack_a)
+	{
+		if (ft_atoi_long(str) == ft_atoi_long(stack_a->content))
+			count++;
+		stack_a = stack_a->next;
+	}
+	if (count > 1)
+		return (0);
+	else
+		return (1);
+}
+
+void	ft_printf(void *content)
+{
+	printf("%s\n", content);
+}
+
+t_list	*split_and_populate(t_list *stack_a, char **argv)
+{
+	char	**str;
+	int		i;
+
+	i = 0;
+	str = ft_split(argv[1], ' ');
+	while (str[i])
+		ft_lstadd_back(&stack_a, ft_lstnew(str[i++]));
+	i = 0;
+	free(str);
+	return (stack_a);
+}
+
+t_list	*populate(t_list *stack_a, int argc, char **argv)
 {
 	int		i;
 	t_list	*node;
 
 	i = 1;
-	node = NULL;
-	while (i < argc)
-	{	
-		if (!node)
-			node = stackA;		
-		if (check_string_error(argv[i]) == -1)
-			return (NULL);	
-		while (node)
-		{
-			if (ft_atoi_long(node->content) == ft_atoi_long(argv[i]))
-				return (NULL);
-			node = node->next;
-		}
-		
-		if (ft_atoi_long(argv[i]) > 2147483647 || ft_atoi_long(argv[i]) < -2147483648)
+	if (argc == 2)
+		stack_a = split_and_populate(stack_a, argv);
+	else
+		while (i < argc)
+			ft_lstadd_back(&stack_a, ft_lstnew(argv[i++]));
+	node = stack_a;
+	while (node)
+	{
+		if (!chk_str_err(node->content) || !chk_dup_str(node->content, stack_a)
+			|| ft_atoi_long(node->content) > 2147483647
+			|| ft_atoi_long(node->content) < -2147483648)
 			return (NULL);
-		ft_lstadd_back(&stackA, ft_lstnew(argv[i]));
-		i++;
+		node = node->next;
 	}
-	return (stackA);
+	return (stack_a);
 }
-
-void ft_printf(void *content)
-{
-	printf("%s\n",content);
-}
-
-int	sorted(t_list *stackA)
-{
-	int	prev;
-	
-	prev = ft_atoi(stackA->content);
-	while (stackA)
-	{
-		stackA = stackA->next;
-		if (stackA && ft_atoi(stackA->content) < prev)
-		{
-			return (0);
-		}
-		if (stackA)
-			prev = ft_atoi(stackA->content);
-	}
-	return (1);
-}
-
-void	ft_lstiterbackwards(t_list *lst, void (*f)(void *))
-{
-	t_list	*node;
-
-	if (lst && f)
-	{
-		node = lst;
-		while (node)
-		{
-			f(node->content);
-			node = node->prev;
-		}
-	}
-}
-
 
 int	main(int argc, char **argv)
 {
-	t_list	*stackA;
-   	t_list	*stackB;
-	
-	stackA = NULL;
-	stackB = NULL;
+	t_list	*stack_a;
+	t_list	*stack_b;
+
+	stack_a = NULL;
+	stack_b = NULL;
 	if (argc > 1)
 	{
-		stackA = populate(stackA, argc, argv);
-		if (!stackA)
+		stack_a = populate(stack_a, argc, argv);
+		if (!stack_a || sorted(stack_a))
 		{
-			ft_putstr_fd("Error\n",FD);
+			if (!stack_a)
+				ft_putstr_fd("Error\n", FD);
+			free(stack_a);
 			return (0);
 		}
-	
-	if (sorted(stackA))
-		printf("sorted\n");
-	sort(&stackA, &stackB);
 	}
-
+	big_sort(&stack_a, &stack_b);
+	//ft_lstiter(stack_a, ft_printf);
 	return (0);
 }
-
-

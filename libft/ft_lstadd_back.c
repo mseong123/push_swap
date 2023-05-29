@@ -24,10 +24,7 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		while (node->next)
 			node = node->next;
 		node->next = new;
-		new->prev = node;
 	}
 	else
 		ft_lstadd_front(lst, new);
-
-
 }

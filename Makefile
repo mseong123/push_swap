@@ -1,4 +1,4 @@
-SRCS_NAME = main swap push rotate reverse_rotate ft_atoi_long sort
+SRCS_NAME = main swap push rotate reverse_rotate ft_atoi_long big_sort utils
 
 SRCS = $(SRCS_NAME:=.c)
 
@@ -15,7 +15,7 @@ all: $(NAME)
 
 $(NAME): $(OBJECTS)
 	make bonus -C ./libft
-	cc -fsanitize=address -g $(OBJECTS) -o $(NAME) -L./libft -lft
+	cc -fsanitize=address $(OBJECTS) -o $(NAME) -L./libft -lft
 
 clean:
 	make clean -C ./libft

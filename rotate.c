@@ -6,81 +6,53 @@
 /*   By: melee <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 10:25:03 by melee             #+#    #+#             */
-/*   Updated: 2023/05/19 11:13:58 by melee            ###   ########.fr       */
+/*   Updated: 2023/05/29 12:02:21 by melee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ra(t_list **stackA)
+void	ra(t_list **stack_a, int together)
 {
 	t_list *temp;
 	t_list *last;
 
 	temp = NULL;
 	last = NULL;
-	if (*stackA && (*stackA)->next)
+	if (*stack_a && (*stack_a)->next)
 	{
-		last = ft_lstlast(*stackA);
-		last->next = *stackA;
-		temp = *stackA;
-		temp->prev = last;
-		*stackA = (*stackA)->next;
-		(*stackA)->prev = NULL;
+		last = ft_lstlast(*stack_a);
+		last->next = *stack_a;
+		temp = *stack_a;
+		*stack_a = (*stack_a)->next;
 		temp->next = NULL;
 	}
-	ft_putstr_fd("ra\n", FD);
+	if (!together)
+		ft_putstr_fd("ra\n", FD);
 }
 
-void	rb(t_list **stackB)
+void	rb(t_list **stack_b, int together)
 {
 	t_list *temp;
 	t_list *last;
 
 	temp = NULL;
 	last = NULL;
-	if (*stackB && (*stackB)->next)
+	if (*stack_b && (*stack_b)->next)
 	{
-		last = ft_lstlast(*stackB);
-		last->next = *stackB;
-		temp = *stackB;
-		temp->prev = last;
-		*stackB = (*stackB)->next; 	
-		(*stackB)->prev = NULL;
+		last = ft_lstlast(*stack_b);
+		last->next = *stack_b;
+		temp = *stack_b;
+		*stack_b = (*stack_b)->next; 	
 		temp->next = NULL;
 	}
-	ft_putstr_fd("rb\n", FD);
+	if (!together)
+		ft_putstr_fd("rb\n", FD);
 }
 
-void	rr(t_list **stackA, t_list **stackB)
+void	rr(t_list **stack_a, t_list **stack_b)
 {
-	t_list *temp;
-	t_list *last;
-
-	temp = NULL;
-	last = NULL;
-	if (*stackA && (*stackA)->next)
-	{
-		last = ft_lstlast(*stackA);
-		last->next = *stackA;
-		temp = *stackA;
-		temp->prev = last;
-		*stackA = (*stackA)->next; 	
-		(*stackA)->prev = NULL;
-		temp->next = NULL;
-	}
-	temp = NULL;
-	last = NULL;
-	if (*stackB && (*stackB)->next)
-	{
-		last = ft_lstlast(*stackB);
-		last->next = *stackB;
-		temp = *stackB;
-		temp->prev = last;
-		*stackB = (*stackB)->next; 	
-		(*stackB)->prev = NULL;
-		temp->next = NULL;
-	}
+	ra(stack_a, 1);
+	rb(stack_b, 1);	
 	ft_putstr_fd("rr\n", FD);
 }
-
