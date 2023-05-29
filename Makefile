@@ -1,4 +1,4 @@
-SRCS_NAME = main swap push rotate reverse_rotate ft_atoi_long big_sort utils
+SRCS_NAME = main swap push rotate reverse_rotate ft_atoi_long big_sort big_sort_utils_1 big_sort_utils_2 big_sort_utils_3 main_utils 
 
 SRCS = $(SRCS_NAME:=.c)
 

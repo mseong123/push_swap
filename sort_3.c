@@ -1,29 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   sort_3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: melee <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/04 11:35:19 by melee             #+#    #+#             */
-/*   Updated: 2023/05/29 12:58:47 by melee            ###   ########.fr       */
+/*   Created: 2023/05/29 15:41:33 by melee             #+#    #+#             */
+/*   Updated: 2023/05/29 15:41:56 by melee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdio.h>
+#include "push_swap.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	t_list	*node;
 
-	if (*lst)
-	{
-		node = *lst;
-		while (node->next)
-			node = node->next;
-		node->next = new;
-	}
-	else
-		ft_lstadd_front(lst, new);
 }

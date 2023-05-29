@@ -6,7 +6,7 @@
 /*   By: melee <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 16:03:21 by melee             #+#    #+#             */
-/*   Updated: 2023/05/29 12:04:06 by melee            ###   ########.fr       */
+/*   Updated: 2023/05/29 12:57:30 by melee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	pa(t_list **stack_a, t_list **stack_b)
 {
-	t_list *temp;
+	t_list	*temp;
+
 	if (*stack_b)
 	{
 		ft_lstadd_front(stack_a, ft_lstnew((*stack_b)->content));
@@ -27,7 +28,8 @@ void	pa(t_list **stack_a, t_list **stack_b)
 
 void	pb(t_list **stack_a, t_list **stack_b)
 {
-	t_list *temp;
+	t_list	*temp;
+
 	if (*stack_a)
 	{
 		ft_lstadd_front(stack_b, ft_lstnew((*stack_a)->content));

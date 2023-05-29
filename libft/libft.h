@@ -6,7 +6,7 @@
 /*   By: melee <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 17:01:13 by melee             #+#    #+#             */
-/*   Updated: 2023/05/15 15:48:09 by melee            ###   ########.fr       */
+/*   Updated: 2023/05/29 12:59:42 by melee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,8 @@
 
 typedef struct s_list
 {
-	
 	void			*content;
 	struct s_list	*next;
-
 }	t_list;
 
 int		ft_isalpha(int c);
