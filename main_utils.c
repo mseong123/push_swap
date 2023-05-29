@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   main_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: melee <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 11:23:49 by melee             #+#    #+#             */
-/*   Updated: 2023/05/29 11:25:14 by melee            ###   ########.fr       */
+/*   Updated: 2023/05/29 19:10:49 by melee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,18 @@ int	sorted(t_list *stack_a)
 			prev = ft_atoi(stack_a->content);
 	}
 	return (1);
+}
+
+void	del_content(void *content)
+{
+	free(content);
+}
+
+void	ft_printf(void *content)
+{
+	char	*str;
+
+	str = (char *)content;
+	ft_putstr_fd(content, FD);
+	ft_putchar_fd('\n', FD);
 }

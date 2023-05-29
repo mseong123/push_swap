@@ -6,7 +6,7 @@
 /*   By: melee <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 10:58:16 by melee             #+#    #+#             */
-/*   Updated: 2023/05/29 15:32:28 by melee            ###   ########.fr       */
+/*   Updated: 2023/05/29 19:06:44 by melee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,8 @@ void			upper_half(int pos[2], t_operations *ptr);
 void			bottom_half(int pos[2], t_operations *ptr);
 void			mix1(int pos[2], t_operations *ptr);
 void			mix2(int pos[2], t_operations *ptr);
+void			small_sort(t_list **stack_a, t_list **stack_b);
+void			del_content(void *content);
+void			ft_printf(void *content);
 
 #endif

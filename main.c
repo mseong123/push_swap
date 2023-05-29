@@ -6,7 +6,7 @@
 /*   By: melee <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 11:03:57 by melee             #+#    #+#             */
-/*   Updated: 2023/05/29 15:29:41 by melee            ###   ########.fr       */
+/*   Updated: 2023/05/29 19:09:50 by melee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,6 @@ int	chk_dup_str(char *str, t_list *stack_a)
 		return (1);
 }
 
-void	ft_printf(void *content)
-{
-	printf("%s\n", content);
-}
-
 t_list	*split_and_populate(t_list *stack_a, char **argv)
 {
 	char	**str;
@@ -89,7 +84,10 @@ t_list	*populate(t_list *stack_a, int argc, char **argv)
 		if (!chk_str_err(node->content) || !chk_dup_str(node->content, stack_a)
 			|| ft_atoi_long(node->content) > 2147483647
 			|| ft_atoi_long(node->content) < -2147483648)
+		{
+			ft_lstclear(&stack_a, del_content);
 			return (NULL);
+		}
 		node = node->next;
 	}
 	return (stack_a);
@@ -109,11 +107,14 @@ int	main(int argc, char **argv)
 		{
 			if (!stack_a)
 				ft_putstr_fd("Error\n", FD);
-			free(stack_a);
 			return (0);
-		}
+		}	
+		if (ft_lstsize(stack_a) <= 5)
+			small_sort(&stack_a, &stack_b);
+		else
+			big_sort(&stack_a, &stack_b);
+		ft_lstiter(stack_a, ft_printf);
+		ft_lstclear(&stack_a, del_content);
 	}
-	big_sort(&stack_a, &stack_b);
-	//ft_lstiter(stack_a, ft_printf);
 	return (0);
 }
