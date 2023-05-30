@@ -6,7 +6,7 @@
 /*   By: melee <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 09:19:28 by melee             #+#    #+#             */
-/*   Updated: 2023/05/29 15:33:46 by melee            ###   ########.fr       */
+/*   Updated: 2023/05/30 11:48:30 by melee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,4 +98,5 @@ void	big_sort(t_list **stack_a, t_list **stack_b)
 			rrb(stack_b, 0);
 	while (*stack_b)
 		pa(stack_a, stack_b);
+	free(ptr);
 }

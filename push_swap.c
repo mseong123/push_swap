@@ -1,43 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_utils.c                                       :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: melee <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/29 11:23:49 by melee             #+#    #+#             */
-/*   Updated: 2023/05/29 19:10:49 by melee            ###   ########.fr       */
+/*   Created: 2023/05/18 11:03:57 by melee             #+#    #+#             */
+/*   Updated: 2023/05/30 11:53:25 by melee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	sorted(t_list *stack_a)
+int	main(int argc, char **argv)
 {
-	int	prev;
+	t_list	*stack_a;
+	t_list	*stack_b;
 
-	prev = ft_atoi(stack_a->content);
-	while (stack_a)
+	stack_a = NULL;
+	stack_b = NULL;
+	if (argc > 1)
 	{
-		stack_a = stack_a->next;
-		if (stack_a && ft_atoi(stack_a->content) < prev)
+		stack_a = populate(stack_a, argc, argv);
+		if (!stack_a)
+		{
+			ft_putstr_fd("Error\n", FD);
 			return (0);
-		if (stack_a)
-			prev = ft_atoi(stack_a->content);
+		}
+		if (sorted(stack_a))
+		{
+			free_stack(stack_a, argc);
+			return (0);
+		}
+		if (ft_lstsize(stack_a) <= 5)
+			small_sort(&stack_a, &stack_b);
+		else
+			big_sort(&stack_a, &stack_b);
+		free_stack(stack_a, argc);
 	}
-	return (1);
-}
-
-void	del_content(void *content)
-{
-	free(content);
-}
-
-void	ft_printf(void *content)
-{
-	char	*str;
-
-	str = (char *)content;
-	ft_putstr_fd(content, FD);
-	ft_putchar_fd('\n', FD);
+	return (0);
 }
