@@ -6,7 +6,7 @@
 /*   By: melee <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 13:08:15 by melee             #+#    #+#             */
-/*   Updated: 2023/05/29 13:32:42 by melee            ###   ########.fr       */
+/*   Updated: 2023/05/30 13:20:09 by melee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,12 @@ void	exec_ops_sub(t_list **stack_a, t_list **stack_b, t_operations *ptr)
 	}
 	while (ptr->rr)
 	{
-		rr(stack_a, stack_b);
+		rr(stack_a, stack_b, 0);
 		ptr->rr--;
 	}
 	while (ptr->rrr)
 	{
-		rrr(stack_a, stack_b);
+		rrr(stack_a, stack_b, 0);
 		ptr->rrr--;
 	}
 }
@@ -93,6 +93,6 @@ void	exec_ops(t_list **stack_a, t_list **stack_b, t_operations *ptr)
 		ptr->rb--;
 	}
 	exec_ops_sub(stack_a, stack_b, ptr);
-	pb(stack_a, stack_b);
+	pb(stack_a, stack_b, 0);
 	ptr->first_time = 1;
 }

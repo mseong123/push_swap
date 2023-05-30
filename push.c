@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	pa(t_list **stack_a, t_list **stack_b)
+void	pa(t_list **stack_a, t_list **stack_b, int together)
 {
 	t_list	*temp;
 
@@ -23,10 +23,11 @@ void	pa(t_list **stack_a, t_list **stack_b)
 		*stack_b = (*stack_b)->next;
 		free(temp);
 	}
-	ft_putstr_fd("pa\n", FD);
+	if (!together)
+		ft_putstr_fd("pa\n", FD);
 }
 
-void	pb(t_list **stack_a, t_list **stack_b)
+void	pb(t_list **stack_a, t_list **stack_b, int together)
 {
 	t_list	*temp;
 
@@ -37,5 +38,6 @@ void	pb(t_list **stack_a, t_list **stack_b)
 		*stack_a = (*stack_a)->next;
 		free(temp);
 	}
-	ft_putstr_fd("pb\n", FD);
+	if (!together)
+		ft_putstr_fd("pb\n", FD);
 }

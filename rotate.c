@@ -6,7 +6,7 @@
 /*   By: melee <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 10:25:03 by melee             #+#    #+#             */
-/*   Updated: 2023/05/29 12:56:30 by melee            ###   ########.fr       */
+/*   Updated: 2023/05/30 13:18:28 by melee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,10 @@ void	rb(t_list **stack_b, int together)
 		ft_putstr_fd("rb\n", FD);
 }
 
-void	rr(t_list **stack_a, t_list **stack_b)
+void	rr(t_list **stack_a, t_list **stack_b, int together)
 {
 	ra(stack_a, 1);
 	rb(stack_b, 1);
-	ft_putstr_fd("rr\n", FD);
+	if (!together)
+		ft_putstr_fd("rr\n", FD);
 }

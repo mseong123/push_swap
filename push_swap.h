@@ -6,7 +6,7 @@
 /*   By: melee <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 10:58:16 by melee             #+#    #+#             */
-/*   Updated: 2023/05/30 11:21:12 by melee            ###   ########.fr       */
+/*   Updated: 2023/05/30 13:19:24 by melee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,15 @@ typedef struct s_operations
 
 void			sa(t_list *stack_a, int together);
 void			sb(t_list *stack_b, int together);
-void			ss(t_list *stack_a, t_list *stack_b);
-void			pa(t_list **stack_a, t_list **stack_b);
-void			pb(t_list **stack_a, t_list **stack_b);
+void			ss(t_list *stack_a, t_list *stack_b, int together);
+void			pa(t_list **stack_a, t_list **stack_b, int together);
+void			pb(t_list **stack_a, t_list **stack_b, int together);
 void			ra(t_list **stack_a, int together);
 void			rb(t_list **stack_b, int together);
-void			rr(t_list **stack_a, t_list **stack_b);
+void			rr(t_list **stack_a, t_list **stack_b, int together);
 void			rra(t_list **stack_a, int together);
 void			rrb(t_list **stack_b, int together);
-void			rrr(t_list **stack_a, t_list **stack_b);
+void			rrr(t_list **stack_a, t_list **stack_b, int together);
 void			big_sort(t_list **stack_a, t_list **stack_b);
 long int		ft_atoi_long(const char *str);
 int				sorted(t_list *stack_a);

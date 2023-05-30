@@ -6,7 +6,7 @@
 /*   By: melee <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 15:41:33 by melee             #+#    #+#             */
-/*   Updated: 2023/05/30 11:19:04 by melee            ###   ########.fr       */
+/*   Updated: 2023/05/30 13:14:27 by melee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ void	sort_4(t_list **stack_a, t_list **stack_b)
 		else
 			rra(stack_a, 0);
 	}
-	pb(stack_a, stack_b);
+	pb(stack_a, stack_b, 0);
 	sort_3(stack_a);
-	pa(stack_a, stack_b);
+	pa(stack_a, stack_b, 0);
 	ra(stack_a, 0);
 }
 
@@ -65,7 +65,7 @@ void	sort_5(t_list **s_a, t_list **s_b)
 		else
 			rra(s_a, 0);
 	}
-	pb(s_a, s_b);
+	pb(s_a, s_b, 0);
 	while (ft_atoi((*s_a)->content) != find_max(*s_a))
 	{
 		if (count_pos(find_max(*s_a), *s_a) <= ft_lstsize(*s_a) / 2)
@@ -73,10 +73,10 @@ void	sort_5(t_list **s_a, t_list **s_b)
 		else
 			rra(s_a, 0);
 	}
-	pb(s_a, s_b);
+	pb(s_a, s_b, 0);
 	sort_3(s_a);
-	pa(s_a, s_b);
-	pa(s_a, s_b);
+	pa(s_a, s_b, 0);
+	pa(s_a, s_b, 0);
 	ra(s_a, 0);
 	ra(s_a, 0);
 }

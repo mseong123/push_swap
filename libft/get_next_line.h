@@ -1,18 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.h                                          :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: melee <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/30 10:01:50 by melee             #+#    #+#             */
-/*   Updated: 2023/05/30 13:37:24 by melee            ###   ########.fr       */
+/*   Created: 2023/05/10 09:49:25 by melee             #+#    #+#             */
+/*   Updated: 2023/05/12 11:32:26 by melee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-# define CHECKER_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-# include "push_swap.h"
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 3
+# endif
+
+# include <unistd.h>
+# include <stdlib.h>
+
+char	*get_next_line(int fd);
+char	*ft_strjoin(char const *s1, char const *s2);
+void	*ft_memset(void *b, int c, size_t len);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+size_t	ft_strlen(const char *s);
+int		check_endline_index(char *str);
 
 #endif
