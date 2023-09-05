@@ -39,7 +39,7 @@ Hence I used a 'count all sorts' algorithm which aims to iterate through stack a
 
 ## Status
 
-Validated 14/6/2023. Grade: 125%. Project duration: 2 weeks.
+Validated 31/5/2023. Grade: 125%. Project duration: 2 weeks.
 
 ## Clone and Compile
 
