@@ -33,7 +33,7 @@ Typical in-place sorting algorithms such as bubble sort, insertion sort and sele
 
 Hence I used a 'count all sorts' algorithm which aims to iterate through stack a and for each number in stack a, I calculate beforehand the number of moves to move it across to stack b (so that the number is sorted in stack b). My algorithm will then execute the moves for the number with the least required number of operation. Once all the numbers are moved to stack b (it's already sorted), my algorithm will move it back to stack a which is the requirement of this exercise.
 
-## Example Sorting Visualisation for 100 numbers
+## Example Sorting Visualisation for 100 numbers (604 moves)
 
 ![push_swap.gif](https://github.com/mseong123/push_swap/blob/5355e751f5c77db8662e59306913330655c91a01/push_swap.gif)
 
