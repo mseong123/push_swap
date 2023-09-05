@@ -20,6 +20,8 @@ Push_swap is a 42 project that involves sorting a list of integers using 2 stack
 | `rrb` | reverse rotate b                    | shifts all elements of stack b from top to bottom      |
 | `rrr` | reverse rotate a + reverse rotate b | both `rra` and `rrb`                                   |
 
+See [Subject.pdf](https://github.com/mseong123/push_swap/blob/8458567d1fc504117fc06f64fe64f30c6b35ed86/en.subject.pdf) for full project instructions.
+
 ## Algorithm used
 
 Typical in-place sorting algorithms such as bubble sort, insertion sort and selection sorts can't be directly used in this exercise due to the limitations imposed which is 1) using 2 stacks 2) operations allowed above. Also project imposes limits on maximum operations that can be performed given certain input sizes:
