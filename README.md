@@ -24,7 +24,7 @@ See [Subject.pdf](https://github.com/mseong123/push_swap/blob/8458567d1fc504117f
 
 ## Algorithm used
 
-Typical in-place sorting algorithms such as bubble sort, insertion sort and selection sorts can't be directly used in this exercise due to the limitations imposed which is 1) using 2 stacks 2) operations allowed above. Also project imposes limits on maximum operations that can be performed given certain input sizes:
+Typical in-place sorting algorithms such as bubble sort, insertion sort and selection sorts can't be used directly in this exercise due to the limitations imposed which is 1) using 2 stacks 2) operations allowed above. Also project imposes limits on maximum operations that can be performed given certain input sizes:
 
 - 3 number : no more than 3 operations
 - 5 number : no more than 12 actions
