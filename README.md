@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Push_swap is a 42 project that involves sorting a list of integers using 2 stacks(can be any data structures ie. array/linked list in C) using the least possible operations (or moves). This projects introduces the concept of Big O notation in computational algorithm efficiency. In this case, it is the time complexity which is how many operations (or moves) it will take to sort the integers as a function of its input size. 
+Push_swap is a 42 project that involves sorting a list of integers using 2 stacks(can be any data structures ie. array / linked list in C) using the least possible operations (or moves). This projects introduces the concept of Big O notation in computational algorithm efficiency. In this case, it is the time complexity which is how many operations (or moves) it will take to sort the integers as a function of its input size. 
 
 ## Operations allowed
 
@@ -33,10 +33,11 @@ Hence I used a 'count all sorts' algorithm which aims to iterate through stack a
 
 ## Example Sorting Visualisation for 100 numbers
 
+![push_swap.gif](https://github.com/mseong123/push_swap/blob/5355e751f5c77db8662e59306913330655c91a01/push_swap.gif)
 
 ## Status
 
-Validated 14/6/2023. Grade: 125%. Project duration: 1 week.
+Validated 14/6/2023. Grade: 125%. Project duration: 2 weeks.
 
 ## Clone and Compile
 
